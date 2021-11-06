@@ -18,13 +18,13 @@ PhotoSwipe:
       type: style
 
 KaTeX:
-    - src: /external/katex@0.12.0/dist/katex.css
+    - src: /external/katex@0.13.13/dist/katex.css
       type: style
 
-    - src: /external/katex@0.12.0/dist/katex.js
+    - src: /external/katex@0.13.13/dist/katex.js
       type: script
       defer: true
 
-    - src: /external/katex@0.12.0/dist/contrib/auto-render.js
+    - src: /external/katex@0.13.13/dist/contrib/auto-render.js
       type: script
       defer: true
