@@ -5,8 +5,8 @@ date: {{ .Date }}
 image: 
 math: 
 license: 
-hidden: false
-comments: false
+hidden: 
+comments: 
 slug: 
 categories:
 tags:

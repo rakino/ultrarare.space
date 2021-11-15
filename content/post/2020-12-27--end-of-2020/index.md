@@ -5,8 +5,8 @@ date: 2021-01-01T00:00:00+0800
 image: street.jpg
 math: 
 license: 
-hidden: false
-comments: false
+hidden: 
+comments: 
 slug: end-of-2020
 categories:
 - usual

@@ -54,8 +54,8 @@ params:
             default: Licensed under CC BY-SA 4.0
 
     comments:
-        enabled: false
-        provider: disqus
+        enabled: true
+        provider: waline
 
         disqusjs:
             shortname:
@@ -84,16 +84,14 @@ params:
 
         # Waline client configuration see: https://waline.js.org/en/reference/client.html
         waline:
-            serverURL:
-            lang:
-            visitor:
-            avatar:
+            serverURL: https://comment.ultrarare.space
+            lang: en
+            visitor: true
             emoji:
-                - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+                - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
             requiredMeta:
                 - name
                 - email
-                - url
             placeholder:
             locale:
                 admin: Admin
