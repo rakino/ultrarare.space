@@ -1,5 +1,5 @@
 baseurl: https://ultrarare.space
-languageCode: zh-cn
+languageCode: zh-Hans
 theme: hugo-theme-stack
 paginate: 5
 title: Ultra Rare Space
