@@ -1,0 +1,4 @@
+#+TITLE: 燭前閃回
+#+DESCRIPTION:
+#+SLUG: notes
+#+IMAGE: NOTES.JPG
