@@ -1,4 +1,0 @@
-#+TITLE: 技术
-#+DESCRIPTION: 出于内容的相关度，这里就被叫做「技术」了。
-#+SLUG: tech
-#+IMAGE: TECH.JPG

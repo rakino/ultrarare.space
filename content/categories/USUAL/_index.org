@@ -1,4 +1,4 @@
-#+TITLE: 日常
-#+DESCRIPTION: 存放一些漫无目的的闲言散语，因此称为「日常」。
+#+TITLE: 雨後思憶
+#+DESCRIPTION:
 #+SLUG: usual
 #+IMAGE: USUAL.JPG

@@ -1,0 +1,8 @@
+baseurl = "https://ultrarare.space"
+paginate = 5
+defaultContentLanguage = "en"
+enableEmoji = true
+footnotereturnlinkcontents = "↩"
+languageCode = "zh-Hant"
+hasCKJLanguage = true
+title = "Ultra Rare Space"
