@@ -1,9 +1,10 @@
 +++
 title = "On Misskey"
 author = ["Hilton Chain"]
+date = 2022-06-26T23:25:00+08:00
 tags = ["Misskey", "Fediverse", "SNS", "Docker", "PostgreSQL", "100DaysToOffload"]
 categories = ["notes"]
-draft = true
+draft = false
 image = "cover.png"
 +++
 
