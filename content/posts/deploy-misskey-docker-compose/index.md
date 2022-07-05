@@ -37,7 +37,7 @@ image = "cover.png"
 
 前提：[Docker](https://docs.docker.com/engine/install/) 和 [docker-compose](https://docs.docker.com/compose/install/)
 
-假定 /srv/misskey 爲 git 倉庫存放路勁、暴露服務於 127.0.0.1:3000，其餘設置項爲 Misskey git 倉庫內示例值。
+假定 /srv/misskey 爲 git 倉庫存放路徑、暴露服務於 127.0.0.1:3000，其餘設置項爲 Misskey git 倉庫內示例值。
 
 準備本地倉庫（不打算自己構建鏡像的話可以省掉這步，但仍需保證之後的三個文件存在且位置正確）：
 
