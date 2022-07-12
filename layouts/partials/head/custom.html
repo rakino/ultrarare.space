@@ -1,13 +1,39 @@
 <style>
     :root {
-        --article-font-family: "Noto Serif TC", var(--base-font-family);
+	--sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";
+	--zh-font-family: "Chiron Hei HK WS", "Noto Sans TC", "PingFang TC", "Droid Sans Fallback", "Microsoft JhengHei";
+
+	--base-font-family: Lato, var(--sys-font-family), var(--zh-font-family);
+	--code-font-family: Menlo, Monaco, Consolas, "Courier New";
+
+	--article-font-family: "Chiron Sung HK WS", "Noto Serif TC", var(--base-font-family);
     }
 </style>
 
 <script>
 		(function () {
 		    const customFont = document.createElement('link');
-		    customFont.href = "https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap";
+		    customFont.href = "https://cdn-js.moeworld.top/npm/chiron-hei-hk-webfont@2.5.2/css/vf.min.css";
+
+		    customFont.type = "text/css";
+		    customFont.rel = "stylesheet";
+
+		    document.head.appendChild(customFont);
+		}());
+
+		(function () {
+		    const customFont = document.createElement('link');
+		    customFont.href = "https://cdn-js.moeworld.top/npm/chiron-sung-hk-webfont@1.0.4/css/vf.min.css";
+
+		    customFont.type = "text/css";
+		    customFont.rel = "stylesheet";
+
+		    document.head.appendChild(customFont);
+		}());
+
+		(function () {
+		    const customFont = document.createElement('link');
+		    customFont.href = "https://cdn-js.moeworld.top/npm/lato-font@3.0.0/css/lato-font.min.css";
 
 		    customFont.type = "text/css";
 		    customFont.rel = "stylesheet";
