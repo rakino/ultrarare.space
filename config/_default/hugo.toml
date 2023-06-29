@@ -1,0 +1,9 @@
+baseurl = "https://ultrarare.space"
+canonifyURLS = true
+enableEmoji = true
+enableRobotsTXT = true
+hasCJKLanguage = true
+languageCode = "zh-Hant"
+paginate = 5
+timeZone = "Asia/Hong_Kong"
+title = "Ultra Rare Space"

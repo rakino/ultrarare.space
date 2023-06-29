@@ -1,0 +1,7 @@
+# <https://gohugo.io/about/security-model/>
+#
+# $SSL_CERT_FILE and $SSL_CERT_DIR is for Guix, see also:
+# <https://guix.gnu.org/en/manual/devel/en/html_node/X_002e509-Certificates.html>
+
+[exec]
+osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|SSL_CERT_(FILE|DIR))$']

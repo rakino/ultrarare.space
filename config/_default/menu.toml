@@ -1,0 +1,17 @@
+# Configure main menu and social menu.
+[[main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = -100
+[main.params]
+icon = "home"
+
+[[main]]
+identifier = "feed"
+name = "Feed"
+url = "/posts/index.xml"
+weight = 0
+[main.params]
+icon = "rss"
+newtab = true

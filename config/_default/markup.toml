@@ -1,0 +1,13 @@
+# Markdown renderer configuration
+[goldmark.renderer]
+# <https://ox-hugo.scripter.co/doc/goldmark/>
+unsafe = true
+
+[tableOfContents]
+endLevel = 4
+ordered = true
+
+[highlight]
+# Use external (theme) CSS style.
+noClasses = false
+guessSyntax = true

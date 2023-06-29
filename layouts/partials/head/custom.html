@@ -1,0 +1,54 @@
+<!-- https://stack.jimmycai.com/config/header-footer#example-custom-font-family-for-article-content -->
+<style>
+  :root {
+      --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";
+      --zh-font-family: "Chiron Hei HK WS", "Noto Sans TC", "PingFang TC", "Droid Sans Fallback", "Microsoft JhengHei";
+
+      --base-font-family: Lato, var(--sys-font-family), var(--zh-font-family);
+      --code-font-family: Menlo, Monaco, Consolas, "Courier New", Monospace;
+
+      --article-font-family: "Chiron Sung HK WS", "Noto Serif TC", var(--base-font-family);
+  }
+</style>
+
+<script>
+  (function () {
+      const customFont = document.createElement('link');
+      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont@2/css/vf.min.css";
+
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+
+      document.head.appendChild(customFont);
+  }());
+
+  (function () {
+      const customFont = document.createElement('link');
+      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont@2/css/vf-italic.min.css";
+
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+
+      document.head.appendChild(customFont);
+  }());
+
+  (function () {
+      const customFont = document.createElement('link');
+      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont@1/css/vf.min.css";
+
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+
+      document.head.appendChild(customFont);
+  }());
+
+  (function () {
+      const customFont = document.createElement('link');
+      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont@1/css/vf-italic.min.css";
+
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+
+      document.head.appendChild(customFont);
+  }());
+</script>
