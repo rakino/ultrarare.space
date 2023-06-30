@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       f419308f-3356-4379-a098-48b7f7f9d6ea
+:END:
+#+AUTHOR: Hilton Chain
+#+HUGO_BASE_DIR: .
+#+OPTIONS: d:t
+
+* DONE My First Post
+:PROPERTIES:
+:EXPORT_FILE_NAME: index
+:EXPORT_HUGO_BUNDLE: first-post
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2019-06-30 Sun 18:00]
+:END:
+
+Hello world! I’ve set up my site!
+
+#+begin_quote
+題圖作者：Pawel Czerwinski（[[https://unsplash.com/@pawel_czerwinski][Unsplash]]）
+#+end_quote
