@@ -1,0 +1,4 @@
+#+TITLE: 紀錄
+#+DESCRIPTION:
+#+SLUG: usual
+#+IMAGE: USUAL.JPG

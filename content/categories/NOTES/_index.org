@@ -1,0 +1,4 @@
+#+TITLE: 錄記
+#+DESCRIPTION:
+#+SLUG: notes
+#+IMAGE: NOTES.JPG
