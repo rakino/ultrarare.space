@@ -5,6 +5,55 @@
 #+HUGO_BASE_DIR: .
 #+OPTIONS: d:t
 
+* DONE 二〇二二 - 略寫                                        :年終:@usual:
+:PROPERTIES:
+:EXPORT_FILE_NAME: index
+:EXPORT_HUGO_BUNDLE: twenty-twenty-too
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg
+:END:
+:LOGBOOK:
+- State "DONE"       from "BUG"        [2023-01-09 Mon 16:11]
+- State "BUG"        from "DONE"       [2023-01-09 Mon 16:11]
+- State "DONE"       from "TODO"       [2023-01-01 Sun 22:47]
+:END:
+#+begin_description
+些許無聊印象。
+#+end_description
+
+同 20 年放學歸家[[/posts/end-of-2020/][略有睏倦]]，及 21 年下班後筋疲力盡相比，22 年的最後一天還算輕鬆：我只是賦閒在家，亦餘有心力觀察路面橫行滑翔的大鵝。
+
+過去一年事件極多，若僅以「有趣」一詞描述，恐怕過分淺薄了。然而言語匱乏如我，在此也只能留些無聊印象罷了。
+
+** 2022 年做了些什麼？
+與過往最有聯繫的，應該是離開了（遊戲領域以外）絕大部分的商業應用服務，以至這次唯一收到的 +跟蹤報告+ 年度回顧還是來自 Steam[fn:1]。此外，思及年份更替，這一年我似乎是靠着 SNS 才知曉「新年將至」的，這點很有意思。
+
+至於書籍影音，21 年底購入的漫畫、輕小說，甚至更早購入的一些作品都還沒開始看……動畫進度尚停滯在 22 年四月新番，遑論往年新番了。
+
+遊戲方面，除新作 /[[https://stray.game/][Stray]]/ 完成了主線外[fn:2]，仍是往年舊作的緩慢推進與重開循環。
+
+這年雖幾乎沒有私人信件往來，電子信箱中卻多出了大量信件。初次接觸 e-mail 協作流程就是 Linux，可說是相當幸運了[fn:3]……爲 GNU Guix 提交補丁過程中，也向査読者學習了許多。大約是拜 [[https://guix.gnu.org/en/manual/devel/en/guix.html][Guix 參考手冊]]所賜，長篇文檔的閱讀體驗也好了不少。
+
+此外還有失業以及高中升學考試前的手續流程之類，就不必詳談了。
+
+跨年方面，第一次看了東九區的紅白。對東八區的傢伙而言，還能留出一小時餘地，可真是便利啊。
+
+** 至於 2023……
+一如既往，只求今年能夠實現。
++ 數據存檔
++ 整理所學
++ 整理過去文字
+
+🎉 Happy New Year!
+
+#+begin_quote
+題圖作者：Pawel Czerwinski（[[https://unsplash.com/photos/v4eUCey7zdw][Unsplash]]）
+#+end_quote
+
+[fn:1] 就數據來看，我的遊戲高峯正好是在冬夏兩季。
+[fn:2] 能完成 /Stray/ 很大程度上是因爲其完整流程僅在 12 小時內，然而「12 小時」的預估對於兩小時就能結束的遊戲還是太多了……恐怕我對於遊戲有着和博客相似的態度——想要完成，卻畏懼着並不完滿的結果。
+[fn:3] Linux 文檔對此有詳盡指導： /[[https://docs.kernel.org/process/submitting-patches.html][Submitting patches: the essential guide to getting your code into the kernel]]/
+
+
 * DONE 二〇二〇 - 尾聲                                        :年終:@usual:
 :PROPERTIES:
 :EXPORT_FILE_NAME: index
