@@ -10,7 +10,7 @@ icon = "home"
 [[main]]
 identifier = "feed"
 name = "Feed"
-url = "/posts/index.xml"
+url = "/index.xml"
 weight = 0
 [main.params]
 icon = "rss"
