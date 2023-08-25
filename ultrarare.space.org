@@ -5,21 +5,23 @@
 #+HUGO_BASE_DIR: .
 #+OPTIONS: d:t
 
-* DONE 按條件加載 Git 配置                                     :Git:@notes:
+* DONE 按條件加載 Git 配置                                       :Git:@notes:
 :PROPERTIES:
 :EXPORT_FILE_NAME: index
 :EXPORT_HUGO_BUNDLE: load-git-config-conditionally
 :END:
 :LOGBOOK:
+- State "DONE"       from "BUG"        [2023-08-25 Fri 11:57]
+- State "BUG"        from "DONE"       [2023-08-25 Fri 11:57]
 - State "DONE"       from "TODO"       [2023-08-25 Fri 01:49]
 :END:
 #+begin_description
 git-config(1): Conditional includes.
 #+end_description
 
-我的 Git 設置有要求對 commit 簽名，然而在 GPG 智能卡方面卻又有每次簽名必須單獨驗證的設置。這對改動不多，在本地就能保證線性歷史的倉庫來說還好，但是對需要頻繁 cherry-pick + rebase 的就難說了。雖然可以在倉庫內關掉簽名要求，但發佈時還是得保證有簽名，爲此臨時開關選項稍有些麻煩，而我也無法說服自己調整智能卡設置就是了。
+我的 Git 設置有要求對 commit 簽名，然而在 OpenPGP 智能卡方面卻又有每次簽名必須單獨驗證的設置。這對改動不多，在本地就能保證線性歷史的倉庫來說還好，但是對需要頻繁 cherry-pick + rebase 的就難說了。雖然可以在倉庫內關掉簽名要求，但發佈時還是得保證有簽名，爲此臨時開關選項稍有些麻煩，而我也無法說服自己調整智能卡設置就是了。
 
-所以只能找一個折中方案，我能直接想到的是：
+所以只能找一個折中方案，能直接想到的是：
 1. 仍然默認要求簽名。
 2. 在特定倉庫關閉簽名要求，並設置一個要求簽名的分支（e.g. outgoing 分支）。
 
@@ -54,7 +56,7 @@ git-config(1): Conditional includes.
   # .git/outgoing 在此結束。
 #+end_src
 
-[fn:1] 詳細參見 =man 1 git-config= 或 =info "(gitman) git-config"= ，並搜索 Conditional includes。
+[fn:1] 詳細參見 =man 1 git-config= 或 =info "(gitman) git-config"= 中 Conditional includes 部分。
 
 * DONE 夜遊                                                        :@usual:
 :PROPERTIES:
@@ -172,7 +174,6 @@ git-config(1): Conditional includes.
 [fn:1] 就數據來看，我的遊戲高峯正好是在冬夏兩季。
 [fn:2] 能完成 /Stray/ 很大程度上是因爲其完整流程僅在 12 小時內，然而「12 小時」的預估對於兩小時就能結束的遊戲還是太多了……恐怕我對於遊戲有着和博客相似的態度——想要完成，卻畏懼着並不完滿的結果。
 [fn:3] Linux 文檔對此有詳盡指導： /[[https://docs.kernel.org/process/submitting-patches.html][Submitting patches: the essential guide to getting your code into the kernel]]/
-
 
 * DONE 二〇二〇 - 尾聲                                        :年終:@usual:
 :PROPERTIES:
