@@ -4,4 +4,4 @@
 # <https://guix.gnu.org/en/manual/devel/en/html_node/X_002e509-Certificates.html>
 
 [exec]
-osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|SSL_CERT_(FILE|DIR))$']
+osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SSL_CERT_(FILE|DIR))$']
