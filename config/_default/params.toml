@@ -21,7 +21,7 @@ local = true
 src = "img/avatar.png"
 
 [article]
-math = true
+math = false
 readingTime = true
 
 [article.license]
