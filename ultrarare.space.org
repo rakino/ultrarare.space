@@ -161,6 +161,9 @@ git-config(1): Conditional includes.
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg
 :END:
 :LOGBOOK:
+- State "DONE"       from "DOING"      [2023-11-15 Wed 14:52]
+- State "DOING"      from "DONE"       [2023-11-15 Wed 13:26] \\
+  reword
 - State "DONE"       from "BUG"        [2023-01-09 Mon 16:11]
 - State "BUG"        from "DONE"       [2023-01-09 Mon 16:11]
 - State "DONE"       from "TODO"       [2023-01-01 Sun 22:47]
@@ -174,7 +177,7 @@ git-config(1): Conditional includes.
 過去一年事件極多，若僅以「有趣」一詞描述，恐怕過分淺薄了。然而言語匱乏如我，在此也只能留些無聊印象罷了。
 
 ** 2022 年做了些什麼？
-與過往最有聯繫的，應該是離開了（遊戲領域以外）絕大部分的商業應用服務，以至這次唯一收到的 +跟蹤報告+ 年度回顧還是來自 Steam[fn:1]。此外，思及年份更替，這一年我似乎是靠着 SNS 才知曉「新年將至」的，這點很有意思。
+與過往最有聯繫的，應該是離開了（遊戲以外）絕大部分的商業應用服務，以至這次唯一收到的 +跟蹤報告+ 年度回顧還是來自 Steam[fn:1]。此外，思及年份更替，這一年我似乎是靠着 SNS 才知曉「新年將至」的，這點很有意思。
 
 至於書籍影音，21 年底購入的漫畫、輕小說，甚至更早購入的一些作品都還沒開始看……動畫進度尚停滯在 22 年四月新番，遑論往年新番了。
 
