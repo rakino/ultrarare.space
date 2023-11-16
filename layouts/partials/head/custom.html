@@ -13,42 +13,21 @@
 
 <script>
   (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont@2/css/vf.min.css";
+      const cssLinks = [
+          "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont/css/vf.min.css",
+          "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont/css/vf-italic.min.css",
+          "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.min.css",
+          "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf-italic.min.css"
+      ];
 
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
+      cssLinks.forEach((url) => {
+          const customFont = document.createElement('link');
+          customFont.href = url;
 
-      document.head.appendChild(customFont);
-  }());
+          customFont.type = "text/css";
+          customFont.rel = "stylesheet";
 
-  (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont@2/css/vf-italic.min.css";
-
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-
-      document.head.appendChild(customFont);
-  }());
-
-  (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont@1/css/vf.min.css";
-
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-
-      document.head.appendChild(customFont);
-  }());
-
-  (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont@1/css/vf-italic.min.css";
-
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-
-      document.head.appendChild(customFont);
+          document.head.appendChild(customFont);
+      })
   }());
 </script>

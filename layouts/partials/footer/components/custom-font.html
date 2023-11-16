@@ -1,31 +1,19 @@
 <script>
   (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/@fontsource/lato/300.css";
+      const cssLinks = [
+          "https://cdn.jsdelivr.net/npm/@fontsource/lato/300.min.css",
+          "https://cdn.jsdelivr.net/npm/@fontsource/lato/400.min.css",
+          "https://cdn.jsdelivr.net/npm/@fontsource/lato/700.min.css"
+      ];
 
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
+      cssLinks.forEach((url) => {
+          const customFont = document.createElement('link');
+          customFont.href = url;
 
-      document.head.appendChild(customFont);
-  }());
+          customFont.type = "text/css";
+          customFont.rel = "stylesheet";
 
-  (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/@fontsource/lato/400.css";
-
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-
-      document.head.appendChild(customFont);
-  }());
-
-  (function () {
-      const customFont = document.createElement('link');
-      customFont.href = "https://cdn.jsdelivr.net/npm/@fontsource/lato/700.css";
-
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-
-      document.head.appendChild(customFont);
+          document.head.appendChild(customFont);
+      });
   }());
 </script>
