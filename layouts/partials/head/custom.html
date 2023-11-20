@@ -10,24 +10,3 @@
       --article-font-family: "Chiron Sung HK WS", "Noto Serif TC", var(--base-font-family);
   }
 </style>
-
-<script>
-  (function () {
-      const cssLinks = [
-          "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont/css/vf.min.css",
-          "https://cdn.jsdelivr.net/npm/chiron-hei-hk-webfont/css/vf-italic.min.css",
-          "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.min.css",
-          "https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf-italic.min.css"
-      ];
-
-      cssLinks.forEach((url) => {
-          const customFont = document.createElement('link');
-          customFont.href = url;
-
-          customFont.type = "text/css";
-          customFont.rel = "stylesheet";
-
-          document.head.appendChild(customFont);
-      })
-  }());
-</script>
