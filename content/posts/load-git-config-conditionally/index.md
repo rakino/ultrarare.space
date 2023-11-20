@@ -3,11 +3,10 @@ title = "按條件加載 Git 配置"
 author = ["Hilton Chain"]
 description = "git-config(1): Conditional includes."
 date = 2023-08-25T01:49:00+08:00
-lastmod = 2023-11-15T14:41:00+08:00
+lastmod = 2023-11-20T20:19:00+08:00
 tags = ["Git"]
 categories = ["notes"]
 draft = false
-image = "cover.jpg"
 +++
 
 ## 緣起 {#緣起}
@@ -26,14 +25,16 @@ image = "cover.jpg"
 
 ## RTFM {#rtfm}
 
-在 Git 中有兩種從其他來源加載配置文件的方法，其一是 include，包含一個 path 選項，值爲以當前配置文件爲參照的相對路徑，形如：
+在 Git 中有兩種從其他來源加載配置文件的方法，其中之一是 include，需要在 path 選項中指定配置文件路徑，例如：
 
 ```cfg
 [include]
         path = ../etc/git/gitconfig
 ```
 
-在 .git/config 中加入上述配置，就像是把這段配置替換爲了 etc/git/gitconfig（.git/../etc/git/gitconfig）中的內容。
+include 的 path 選項指定的路徑是相對於配置所在的文件的。比如在 .git/config 中加入上述配置，就會加載 etc/git/gitconfig（.git/../etc/git/gitconfig）。
+
+如果 etc/git/gitconfig 裏也有這段呢？那就會再加載 etc/etc/git/gitconfig（etc/git/../etc/git/gitconfig）。
 
 另一種方法就是 includeIf 了，同前者一樣包含 path 選項，只不過除此以外還需要一個條件，只有滿足條件後纔會加載 path 中指定的配置文件。條件有很多種[^fn:1]，而我想要指定「切出要求簽名的分支（比如前面提到的 outgoing）時」，所以用到了 onbranch。寫出來像是這樣：
 
@@ -75,7 +76,5 @@ git config -f .git/outgoing commit.gpgsign true
         gpgsign = true
 # .git/outgoing 在此結束。
 ```
-
-> 題圖作者：Pat Whelen（[Unsplash](https://unsplash.com/photos/brown-wood-log-in-close-up-photography-JIxBp37Vt3Y)）
 
 [^fn:1]: 詳細參見 `man 1 git-config` 或 `info "(gitman) git-config"` 中 Conditional includes 部分。
