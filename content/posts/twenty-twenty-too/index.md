@@ -40,7 +40,7 @@ image = "cover.jpg"
 
 🎉 Happy New Year!
 
-> 題圖作者：Pawel Czerwinski（[Unsplash](https://unsplash.com/photos/v4eUCey7zdw)）
+> 題圖攝於 2022 夏至。
 
 [^fn:1]: 就數據來看，我的遊戲高峯正好是在冬夏兩季。
 [^fn:2]: 能完成 _Stray_ 很大程度上是因爲其完整流程僅在 12 小時內，然而「12 小時」的預估對於兩小時就能結束的遊戲還是太多了……恐怕我對於遊戲有着和博客相似的態度——想要完成，卻畏懼着並不完滿的結果。

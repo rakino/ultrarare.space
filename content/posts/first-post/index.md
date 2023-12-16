@@ -8,4 +8,4 @@ image = "cover.jpg"
 
 Hello world! I’ve set up my site!
 
-> 題圖作者：Pawel Czerwinski（[Unsplash](https://unsplash.com/@pawel_czerwinski)）
+> 題圖攝於 2019 初夏。
