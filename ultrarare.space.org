@@ -175,7 +175,7 @@ include 的 path 選項指定的路徑是相對於配置所在的文件的。比
 些許無聊印象。
 #+end_description
 
-同 20 年放學歸家[[/posts/end-of-2020/][略有睏倦]]，及 21 年下班後筋疲力盡相比，22 年的最後一天還算輕鬆：我只是賦閒在家，亦餘有心力觀察路面橫行滑翔的大鵝。
+同 20 年放學歸家[[id:1a498db4-80ff-47ec-9d2d-9c10c05139af][略有睏倦]]，及 21 年下班後筋疲力盡相比，22 年的最後一天還算輕鬆：我只是賦閒在家，亦餘有心力觀察路面橫行滑翔的大鵝。
 
 過去一年事件極多，若僅以「有趣」一詞描述，恐怕過分淺薄了。然而言語匱乏如我，在此也只能留些無聊印象罷了。
 
@@ -213,6 +213,7 @@ include 的 path 選項指定的路徑是相對於配置所在的文件的。比
 :EXPORT_FILE_NAME: index
 :EXPORT_HUGO_BUNDLE: end-of-2020
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg
+:ID:       1a498db4-80ff-47ec-9d2d-9c10c05139af
 :END:
 :LOGBOOK:
 - State "DONE"       from "DOING"      [2023-01-01 Sun 23:22]
