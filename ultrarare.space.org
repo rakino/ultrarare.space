@@ -5,10 +5,81 @@
 #+HUGO_BASE_DIR: .
 #+OPTIONS: d:t
 
+* DONE 二〇二三 - 輾轉                                        :年終:@usual:
+:PROPERTIES:
+:EXPORT_FILE_NAME: index
+:EXPORT_HUGO_BUNDLE: the-4th-year
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg :toc false
+:ID:       dc93677d-8726-422c-ac68-7cbbc85466cf
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-12-31 Sun 23:38]
+:END:
+#+begin_description
+總而言之，這就是 20 歲的「年終」了。
+#+end_description
+
+因爲上學這種相當無趣的原因，我不得不注意起時間來。所以今年的這一篇比起先前寫得要稍早些。
+
+我總感覺，既然年終的紀錄已經有 17 歲的[[id:1a498db4-80ff-47ec-9d2d-9c10c05139af][尾聲]]和 19 歲的[[id:93bda719-69ca-46dd-8ae7-3baf71b79005][略寫]]，那接下來該在 21 歲了吧？但要是等到了那個時候還把他當成慣例寫下來，豈不是太無聊了？
+
+不過那還是未來，而我現在也能寫。總而言之，這就是 20 歲的「年終」了。
+
+** 冬
+年初曾有過兩次出行，過程中也有開心的時刻，然而我對出行本身還是感受不佳，我不清楚自己是否還適合了。
+
+儘管去年末「理解每一步操作」的系統設置嘗試因爲染病草草了結，那時完成的系統如今還在使用。今年用相似的方式設置了 YubiKey 和 GnuPG，因而有了當前的 OpenPGP 密鑰。我也整理好了自己的[[https://github.com/rakino/Testament][配置文件]]。
+
+此外看了 /[[https://www.onepiece-film.jp/][ONE PIECE FILM RED]]/ ，雖說翻譯帶有審查痕跡實在令人不爽，但總算是搞清楚去年紅白出現的 +奇怪+ 形象到底是什麼了。因爲很少進城而且交通時間較長，我比較少去電影院，上一次或許還是『[[https://violet-evergarden.jp/sidestory/][ヴァイオレット・エヴァーガーデン 外伝 - 永遠と自動手記人形 -]]』，在 2020 年一月初。
+
+** 春
+今年又開始看漫畫了，主要是藤本タツキ的作品。因爲有趣所以看得比較多，也就……容易忘。
+
+高考前剩下的流程，也都在這個季節完成。我雖然離開了「學校」，但對曾有的高中「生活」印象並不差，可惜只能以每次進入學校都愈加強烈的陌生感作結了。
+
+在春天的後半開始遊玩『[[https://p5r.jp/][ペルソナ5 ザ・ロイヤル]]』，玩起這遊戲感覺我的人生像是有救了一樣。我從第一次遊玩開始，用了兩週計 125 小時完成主線。
+
+遊玩 P5R 的經驗說明我去年關於遊戲進度緩慢的想法並不靠譜——我大概並不是在追求完滿的結果，只是玩的遊戲確實讓我感到無聊。這也意味着我註定會在結束 P5R 後消沉下去，直到兩週以後『[[https://p5s.jp/][ペルソナ5 スクランブル ザ ファントム ストライカーズ]]』打折才振作起來。
+
+感受着同屏幕內暑假相襯的溫度，春天就在 90 小時的 P5S 遊玩中結束了。
+
+** 夏
+結束了 /[[https://www.ea.com/games/titanfall/titanfall-2][Titanfall 2]]/ 戰役部分，玩 FPS 遊戲實在痛苦，便不再繼續了。
+
+然後就是高考了。不過我待在學校的時間還不及三分之一，所以除了前述「陌生感」，以及考場桌椅坐着難受以外，沒有什麼可說。我也會想，我造成的麻煩已經夠多了，也許我並不該報名高考？但沒有辦法，我沒有更好的選擇了。
+
+無論如何，我不再是高中生了。
+
+在夏天的末尾——初次設置博客的四年以後，又思考了博客的[[https://github.com/rakino/ultrarare.space][構成]]，這次要乾淨不少。
+
+** 秋
+發現自己或許患有 ADHD，我從來沒有想過這種情況，但一以此解釋，許多異常都合理了起來。然而如今已不是瞭解這點的時機，我並不打算進一步確認。
+
+受助於幾位可愛的存在，我成爲了 GNU Guix 的 committer。說來慚愧，考慮到我最初產生這個想法的理由，我還沒有做好這個角色，責任也好期待也罷都承擔得比較艱難。不過這是我沒有做過的事，嘗試改善這種處境或許正是「破除死局的鑰匙」，來年加油吧。
+
+一整年都有在緩慢推進的 /[[https://www.platinumgames.com/games/nier-automata][NieR:Automata]]/ 總算到了 Final Wish。可惜因爲系統設置，遊玩這段時並未存上檔，而我後來每次在遊戲中都會掉進坑裏爬不出來，這 Final Wish 終究難以如願，我便將其擱置了。
+
+結束了 /[[http://stage-nana.sakura.ne.jp/narcissu.htm][narcissu]]/ ，這是我結束的第一部視覺小說。
+
+** 初冬
+經三年之久，終於結束了『[[https://sukerasparo.com/amrilato/index.html][ことのはアムリラート]]』，這是我遊玩的第一部視覺小說。
+
+** 另
+今年博客新增《[[id:c7fe3c00-71a4-4345-b3e1-3f8536df135e][夜遊]]》和《[[id:faf5bcf6-7626-4eaa-8d64-cde667ffd25c][按條件加載 Git 配置]]》兩篇，完成度都不高。前者原本記錄於 2019 年 8 月，如今出現算是爲了迴應略寫中提到的「整理」，不過我缺乏寫作練習，很久沒有嘗試寫過什麼了，不知道再次修改會在什麼時候。
+
+我居然快到 21 歲了啊。
+
+Happy New Year.
+
+#+begin_quote
+題圖攝於 2023 夏，高考後。
+#+end_quote
+
 * DONE 按條件加載 Git 配置                                     :Git:@notes:
 :PROPERTIES:
 :EXPORT_FILE_NAME: index
 :EXPORT_HUGO_BUNDLE: load-git-config-conditionally
+:ID:       faf5bcf6-7626-4eaa-8d64-cde667ffd25c
 :END:
 :LOGBOOK:
 - State "DONE"       from "DOING"      [2023-11-20 Mon 20:19]
@@ -93,6 +164,7 @@ include 的 path 選項指定的路徑是相對於配置所在的文件的。比
 :EXPORT_FILE_NAME: index
 :EXPORT_HUGO_BUNDLE: rush
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.png :toc false
+:ID:       c7fe3c00-71a4-4345-b3e1-3f8536df135e
 :END:
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2023-08-02 Wed 01:38]
@@ -162,6 +234,7 @@ include 的 path 選項指定的路徑是相對於配置所在的文件的。比
 :EXPORT_FILE_NAME: index
 :EXPORT_HUGO_BUNDLE: twenty-twenty-too
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :image cover.jpg
+:ID:       93bda719-69ca-46dd-8ae7-3baf71b79005
 :END:
 :LOGBOOK:
 - State "DONE"       from "DOING"      [2023-11-15 Wed 14:52]
