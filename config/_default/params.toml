@@ -71,3 +71,15 @@ enabled = true
 
 [imageProcessing.content]
 enabled = true
+
+## Comments
+[comments]
+enabled = true
+provider = "giscus"
+
+[comments.giscus]
+repo = "rakino/ultrarare.space"
+repoID = "MDEwOlJlcG9zaXRvcnkzODgzOTE2ODM="
+category = "Announcements"
+categoryID = "DIC_kwDOFyZjA84CddvC"
+strict = 1
