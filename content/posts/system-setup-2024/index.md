@@ -3,6 +3,7 @@ title = "時隔一年的桌面 Guix System 安裝"
 author = ["Hilton Chain"]
 description = "再有下次，怕是成本不低了。"
 date = 2024-02-24T01:14:00+08:00
+lastmod = 2024-02-24T14:04:00+08:00
 tags = ["Guix"]
 categories = ["notes"]
 draft = false
@@ -17,7 +18,7 @@ image = "cover.jpg"
 
 關於 GNU Guix 的資料並不算多，中文則更少，想到上次安裝詳情並不完整也未公開發布，不免遺憾。如今我便將其寫作博文，以期爲後來者參考。
 
-這次安裝是在 x86_64 UEFI 系統上的手動安裝，會用到 GRUB 引導加載器，也會設置 LUKS2 加密分區並在其上創建 Btrfs 文件系統。如果對手動安裝不夠熟悉，可以同時參閱 ArchWiki 上 Arch Linux 的[安裝指南](https://wiki.archlinux.org/title/Installation_guide)，在基礎上是相通的，無論路徑如何，實現相同效果就好了。
+這次安裝是在 x86_64 UEFI 系統上的手動安裝，會用到 GRUB 引導加載器，也會設置 LUKS2 加密分區並在其上創建 Btrfs 文件系統。如果對手動安裝不夠熟悉，可以同時參閱 ArchWiki 上 Arch Linux 的[安裝指南](https://wiki.archlinux.org/title/Installation_guide)，在基礎上相通。無論路徑如何，實現相同效果就好了。
 
 
 ## 預備 {#預備}
@@ -31,7 +32,7 @@ Guix System 的安裝，只要求先設置好 Guix 程序。不過我有重新�
 
 ## 安裝環境 {#安裝環境}
 
-進入 LiveCD 後，首先需要進行一些基本設置，如網絡、顯示縮放、時區等，本節將提及其他值得注意處，以及 Guix 安裝設置流程。
+進入 LiveCD 後，首先進行一些基本設置，如網絡、顯示縮放、時區等。
 
 
 ### 登入 root {#登入-root}
@@ -45,7 +46,7 @@ sudo --login --user=root
 
 ### 鍵盤佈局 {#鍵盤佈局}
 
-我使用的鍵盤佈局是 Dvorak，之後[設置 LUKS 分區](#luks-分區-btrfs)密碼時，爲了規避可能的 GRUB 設置問題，會回到 QWERTY 佈局一次，所以兩者一併提及。
+我的鍵盤佈局是 Dvorak，之後[設置 LUKS 分區](#luks-分區-btrfs)密碼時，爲規避可能的 GRUB 設置問題，會回到 QWERTY 佈局一次，所以兩者一併提及。
 
 Ubuntu LiveCD 的桌面環境是 Xorg 上的 GNOME，鍵盤佈局可以用 setxkbmap 設置。
 
@@ -70,13 +71,13 @@ loadkeys us
 
 ### 安裝 Guix {#安裝-guix}
 
-安裝 Guix 的推薦方式是使用安裝腳本，不過如果軟件包管理器中提供了 1.4.0 版本，也應當可以使用。
+安裝 Guix 推薦使用安裝腳本，不過如果軟件包管理器中提供了 1.4.0 版本，也應當可以使用。
 
 ```shell
 cd /tmp
 wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
 
-# 通過 ftp.gnu.org 下載可能較慢，這裏將下載源改至 BFSU 鏡像站。
+# 由 ftp.gnu.org 下載可能較慢，這裏將下載源改至 BFSU 鏡像站。
 sed --in-place 's/ftp.gnu.org/mirrors.bfsu.edu.cn/g' guix-install.sh
 
 chmod +x guix-install.sh
@@ -85,7 +86,7 @@ chmod +x guix-install.sh
 
 安裝會向 /etc/profile.d 添加配置文件，所以需要重新[登錄](#登入-root)。
 
-安裝好的 Guix 由 guix-daemon 和 guix 兩個程序組成，前者由 root 運行，負責基礎管理功能，後者可以由非特權用戶運行，提供其餘絕大部分功能。
+Guix 由 guix-daemon 和 guix 兩個程序組成，前者由 root 運行，負責基礎管理功能，後者可以由非特權用戶運行，提供其餘絕大部分功能。
 
 
 ### 設置 Guix {#設置-guix}
@@ -93,19 +94,17 @@ chmod +x guix-install.sh
 
 #### 頻道 {#頻道}
 
-Guix 程序由多個頻道組成（默認僅包含官方倉庫一個頻道），更新 Guix 大致上是拉取頻道更新、編譯頻道，並將產物合成爲新的 Guix 程序。這個編譯過程最高會用到 4GiB 內存，所以要想日常使用 Guix，至少要有一臺機器內存足夠。
+Guix 程序是由多個頻道組成的（默認僅包含官方倉庫一個頻道），更新 Guix 大致上就是拉取頻道更新、編譯頻道，再將產物合成爲新的 Guix 程序。這個編譯過程最高會用到 4GiB 內存，所以要想日常使用 Guix，至少得有一臺機器內存足夠。
 
-我要添加 Nonguix 和 [Rosenthal](https://github.com/rakino/Rosenthal) 兩個頻道，前者在[預備](#預備)中提過，包含原始 Linux 內核與非自由固件，後者是我自己的頻道，有提供支持 Argon2（LUKS2 默認使用）的 GNU GRUB 引導加載器變體。
+我會添加 Nonguix 和 [Rosenthal](https://github.com/rakino/Rosenthal) 兩個頻道，前者在[預備](#預備)中提過，包含原始 Linux 內核與非自由固件，後者是我自己的頻道，有提供支持 Argon2（LUKS2 默認使用）的 GNU GRUB 引導加載器變體。
 
-頻道配置文件的默認路徑爲 ~/.config/guix/channels.scm 和 /etc/guix/channels.scm，前者優先級更高。
-
-爲了指代方便，本文選擇其中之一：/etc/guix/channels.scm。
+頻道配置文件默認路徑爲 ~/.config/guix/channels.scm 和 /etc/guix/channels.scm，前者優先級更高。爲了指代方便，本文選擇其中之一：/etc/guix/channels.scm。
 
 ```scheme
 ;; /etc/guix/channels.scm 由此開始：
 (list (channel
        (name 'guix)
-       ;; 這裏用了 SJTUG 的鏡像，頻道中也有記錄原始地址，使用鏡像時，更新會有 warning
+       ;; 這裏用了 SJTUG 的鏡像，頻道中有記錄原始地址，使用鏡像時，更新會有 warning
        (url "https://mirror.sjtu.edu.cn/git/guix.git")
        (introduction
         (make-channel-introduction
@@ -160,13 +159,13 @@ guix archive --authorize < signing-key.pub
 
 （安裝 guix 時會在 /etc/guix 下生成一對密鑰：signing-key.pub 和 signing-key.sec，已認證的公鑰則記錄在 /etc/guix/acl 中。）
 
-然後是爲 guix-daemon 設置替代服務器。
+之後需要設置 guix-daemon。
 
 ```shell
 systemctl edit --full guix-daemon.service
 ```
 
-在其 systemd 配置文件中 ExecStart 部分做出以下改動，除官方服務器外，添加 SJTUG 鏡像與 Nonguix。因爲查詢二進制替代有先後順序，所以建議鏡像優先，其餘按命中率從高到低排序：
+對其 systemd 配置文件 ExecStart 部分改動如下，除官方服務器外，添加 SJTUG 鏡像與 Nonguix。因爲查詢二進制替代有先後順序，所以建議鏡像優先，其餘按命中率由高到低排序：
 
 ```diff
 diff --git a/guix.daemon.service b/guix.daemon.service
@@ -233,7 +232,7 @@ systemctl restart guix-daemon.service
 
 ### 更新 Guix {#更新-guix}
 
-下一步便是更新，更新時會先拉取頻道，這部分若需設置代理，則在當前環境設置 http_proxy 和 https_proxy，如下：
+下一步便是更新，更新時會先拉取頻道，這部分如需設置代理，則在當前環境設置 http_proxy 和 https_proxy，如下：
 
 ```shell
 export http_proxy=http://127.0.0.1:1080
@@ -284,7 +283,7 @@ Device          Start        End    Sectors  Size Type
 /dev/nvme0n1p2 526336 3907028991 3906502656  1.8T Linux filesystem
 ```
 
-分區過程中可能會注意到一些像是「Linux root (x86-64)」的類型，這些類型來自 [Discoverable Partitions Specification](https://uapi-group.org/specifications/specs/discoverable_partitions_specification/)，用於一些啓動時自動掛載工具，除此以外同 fdisk 默認「Linux filesystem」無異。
+分區過程中可能會注意到一些像是「Linux root (x86-64)」的類型，這些類型來自 [Discoverable Partitions Specification](https://uapi-group.org/specifications/specs/discoverable_partitions_specification/)，用於啓動時自動掛載工具，除此同 fdisk 默認「Linux filesystem」無異。
 
 
 ### EFI 系統分區（FAT32） {#efi-系統分區-fat32}
@@ -369,7 +368,7 @@ btrfs subvolume create /media/encrypted/@System/@Guix
 
 我會將 `@System/@Guix` 掛載到 /， `@Data` 掛載到 /var/lib， `@Home` 掛載到 /home，而先前設置的 EFI 系統分區則會被掛載到 /efi。
 
-我的安裝過程將在 /mnt 下進行，這裏將文件系統掛載到對應位置：
+我的安裝過程將在 /mnt 下進行，這裏掛載文件系統到對應位置：
 
 ```shell
 mount --options compress=zstd,discard=async,subvol=@System/@Guix \
@@ -465,12 +464,12 @@ mount --options compress=zstd,discard=async,subvol=@Home \
 
 ## Guix System 設置 &amp; 安裝 {#guix-system-設置-and-安裝}
 
-終於來到正題了，Guix System 的操作系統設置和前面的頻道十分相像，都還算直觀。不過一些 Scheme 基礎如列表操作難以避免，因此我限制了配置文件中的 Scheme 含量，[在附錄中也有簡單解釋](#列表操作)。
+終於來到正題了，Guix System 的設置和前面的頻道十分相像，都還算直觀。不過一些 Scheme 基礎如列表操作難以避免，因此我限制了配置文件中的 Scheme 含量，[在附錄中也有簡單解釋](#列表操作)。
 
 
 ### 配置文件 {#配置文件}
 
-下面大體上是我這次安裝使用的系統配置文件，使用了 GNOME 桌面環境，對於初次設置還算方便，至少開機能夠上網，帶有基礎工具。如果未來系統設置出現問題，也能回滾到一個能工作的狀態。鍵盤佈局和代理的部分註釋掉了，可以根據情況取消註釋，在引導加載器、文件系統以及用戶設置上稍作調整就可以直接使用。
+下面大體上是我這次安裝使用的系統配置文件，使用了 GNOME 桌面環境，對於初次設置還算方便，至少開機能夠上網，還帶有基礎工具。如果未來系統設置出現問題，也能回滾到一個能工作的狀態。鍵盤佈局和代理的部分註釋掉了，可以根據情況取消註釋，在引導加載器、文件系統以及用戶設置上稍作調整就可以直接使用。
 
 配置文件可以是任何名字，也可以保存到任意位置，爲了指代方便，本文選擇 /etc/config.scm。
 
@@ -614,19 +613,19 @@ mount --options compress=zstd,discard=async,subvol=@Home \
 
 ### 安裝 Guix System {#安裝-guix-system}
 
-指定配置文件和安裝路徑就可以了。
+安裝由 `guix system init` 進行，指定配置文件和安裝路徑就可以了。
 
 ```shell
 guix system init /etc/config.scm /mnt
 ```
 
-Guix System 在安裝上，會先構建引導加載器配置[^fn:2]，而產物存放在 /gnu/store 下，對於 LiveCD 環境，文件系統存儲在內存，可能會內存不足。
+在安裝上，會先構建引導加載器配置[^fn:2]，而產物存放在 /gnu/store 下，對於 LiveCD 環境，文件系統存儲在內存，可能會內存不足。
 
 Guix System LiveCD 的解決方案是 [cow-store](https://guix.gnu.org/manual/devel/en/guix.html#Proceeding-with-the-Installation) 服務：掛載外部文件系統到 /gnu/store，這樣對其寫入也就不會影響內存了。本文附錄附有[手動實現 cow-store 流程](#cow-store)。
 
 安裝過程可能因爲網絡問題失敗，不過已經下載好的內容之後不會重複下載，所以失敗了也請放心，重試就好。
 
-爲了方便在新系統中的使用，可以把 [Guix System](#配置文件) 和[頻道](#頻道)的配置文件一併放進安裝路徑：
+爲了方便在新系統中使用，可以把 [Guix System](#配置文件) 和[頻道](#頻道)的配置文件一併放進安裝路徑：
 
 ```shell
 mkdir --parents /mnt/etc/guix
@@ -637,17 +636,17 @@ cp {,/mnt}/etc/config.scm
 cp {,/mnt}/etc/guix/channels.scm
 ```
 
-至此安裝流程也就結束，可以重啓了。
+至此安裝流程結束，可以重啓了。
 
 
 ## 安裝之後 {#安裝之後}
 
-啓動後會需要輸入兩次密碼，至於原因參見附錄[啓動流程](#啓動流程)。
+啓動後會需要輸入兩次 LUKS 分區密碼，至於原因參見附錄[啓動流程](#啓動流程)。
 
 
-### 設置密碼 {#設置密碼}
+### 設置用戶密碼 {#設置用戶密碼}
 
-完成啓動後後會進入 GDM 登錄介面，不過因爲還沒有設置密碼，此時登錄介面中並無用戶可選。
+完成啓動後會進入 GDM 登錄介面，不過由於還沒有設置密碼，此時登錄介面中並無用戶可選。
 
 Ctrl+Alt+F1 進入控制檯，以 root 登錄，可以直接登入。
 
@@ -657,7 +656,7 @@ Ctrl+Alt+F1 進入控制檯，以 root 登錄，可以直接登入。
 passwd myuser
 ```
 
-登入用戶，驗證 sudo 正常後工作再登出用戶：
+登入用戶，驗證 sudo 正常工作後再登出用戶：
 
 ```shell
 su --login myuser
@@ -677,38 +676,31 @@ Ctrl+Alt+F7 回到登錄介面，現在就有用戶了，輸入密碼進入桌�
 
 ### 接下來？ {#接下來}
 
-先前安裝時已經設置了頻道配置文件，所以可以接收更新了。
+先前[安裝](#安裝-guix-system)時已將頻道配置文件放到 /etc/guix/channels.scm，所以可以接收更新了。
 
 ```shell
 guix pull
 ```
 
-應用系統配置的命令如下，只需要一個配置文件路徑，對其路徑和名稱沒有要求：
+重新設置系統的命令如下，只需要一個配置文件路徑，對其路徑和名稱沒有要求：
 
 ```shell
 sudo guix system reconfigure /etc/config.scm
 ```
 
-Guix 的 sudo 會保留 PATH 環境變量，也就是說 `sudo guix` 會正確使用當前用戶的 Guix，當然初次使用還是需要確認 guix 命令指向 ~/.config/guix/current/bin/guix。
+Guix 的 sudo 會保留 PATH 環境變量，也就是說 `sudo guix` 會正確使用當前用戶的 Guix，當然初次使用最好還是確認 guix 命令指向 ~/.config/guix/current/bin/guix。
 
-此外建議將系統配置文件存放到版本控制系統。附錄中也包含了 [GNU Shepherd 使用說明](#gnu-shepherd-使用說明)。
+此外建議將系統配置文件存放到版本控制系統。
 
-參考手冊中包含的內容可能比想象中還要多，可以以 [Getting Started](https://guix.gnu.org/manual/devel/en/guix.html#Getting-Started) 這一節爲入口開始。
+附錄中也包含了 [GNU Shepherd 使用說明](#gnu-shepherd-使用說明)。
 
-最後的最後，附圖一張。Happy hacking！
+參考手冊中包含的內容可能比想象中還要多，可以從 [Getting Started](https://guix.gnu.org/manual/devel/en/guix.html#Getting-Started) 這一節開始。
+
+最後的最後，附圖一張。
+
+Happy hacking！
 
 ![Guix System 上的 GNOME 桌面環境](gnome-on-guix.png)
-
-
-## 參考 {#參考}
-
--   [Booting process of Linux - Wikipedia](https://en.wikipedia.org/wiki/Booting_process_of_Linux)
--   [Disk encryption theory - Wikipedia](https://en.wikipedia.org/wiki/Disk_encryption_theory)
--   [Frequently Asked Questions Cryptsetup/LUKS - cryptsetup Wiki](https://gitlab.com/cryptsetup/cryptsetup/-/wikis/FrequentlyAskedQuestions)
--   [GNU Guix Reference Manual](https://guix.gnu.org/manual/devel/en/guix.html)
--   [You Don't Want XTS — Quarrelsome](https://sockpuppet.org/blog/2014/04/30/you-dont-want-xts/)
--   [dm-crypt/Device encryption - ArchWiki](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption)
--   [Using the initial RAM disk (initrd) - The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/admin-guide/initrd.html)
 
 
 ## 附錄 {#附錄}
@@ -817,9 +809,9 @@ GRUB 採用模塊化設計，在安裝時會需要指定啓動目錄（默認爲
 
 GRUB 的配置文件包含啓動 Linux 內核的條件：Linux 內核與 initrd 路徑，以及啓動參數。自然，GRUB 必須支持內核和 initrd 所在的文件系統，對於 Guix System 來說，就是 /gnu/store 所在的文件系統。
 
-Linux 內核也是採用模塊化設計，initrd 裏放了啓動過程中需要的模塊，內核啓動後會解壓 initrd 並運行其中的 init 程序，這個 init 程序負責掛載 `/` 和其他在配置中標記爲啓動時需要的文件系統，創建根文件系統中的剩餘部分，並運行 PID 1，在 Guix System 中也就是 GNU Shepherd，自此結束啓動流程。
+Linux 內核也是採用模塊化設計，initrd 裏放了啓動過程中需要的模塊，內核啓動後會解壓 initrd 並運行其中的 init 程序，這個 init 程序負責掛載 `/` 和其他在配置中標記爲啓動時需要的文件系統，創建根文件系統中的剩餘部分，最後運行 PID 1，在 Guix System 中也就是 GNU Shepherd，自此結束啓動流程。
 
-initrd 中的 init 程序負責掛載 `/` ，他也是在 LUKS 分區上，需要先解密，這也就是開機時第二次密碼輸入。
+initrd 中的 init 程序負責掛載 `/` ，由於我的 `/` 也在 LUKS 分區，需要先解密，這也就是開機時第二次密碼輸入。
 
 在 Guix System 的啓動流程中，需要注意的問題主要和 GRUB 有關：
 
@@ -843,7 +835,7 @@ Shepherd 包含四個程序：
 
 Shepherd 在認證上依賴文件系統的權限管理能力。比如 Guix System 的 Shepherd，socket 在 /var/run/shepherd/socket，socket 的權限是 0755，其所在目錄則爲 0700。
 
-如果能連接到 socket 就能控制 Shepherd，所以 halt、reboot、用 herd 連接系統 Shepherd 都需要 sudo。
+連接到 socket，就能控制 Shepherd，所以 halt、reboot、用 herd 連接系統 Shepherd 都需要 sudo。
 
 herd 的語法爲： `herd ACTION [SERVICE [OPTIONS...]]`
 
@@ -890,7 +882,7 @@ Status of bluetooth:
 23 Feb 2024 15:01:17    service dbus is running
 ```
 
-其餘基礎操作爲 `herd start <服務>` 、 `herd stop <服務>` 、 `herd restart <服務>` 、 `herd enable <服務>` 和 `herd disable <服務>` ，分別爲啓動、停止、重啓、啓用、禁用服務。重啓服務的邏輯是停止並啓動服務，所以重啓 root 服務是不可能的，下爲 `herd restart root` 輸出：
+其餘基礎操作爲 `herd start <服務>` 、 `herd stop <服務>` 、 `herd restart <服務>` 、 `herd enable <服務>` 和 `herd disable <服務>` ，分別爲啓動、停止、重啓、啓用、禁用服務。重啓服務的邏輯是停止服務 + 啓動服務，所以重啓 root 服務是不可能的，下爲 `herd restart root` 輸出：
 
 ```text
 You must be kidding.
@@ -908,5 +900,18 @@ The root service is used to operate on shepherd itself.
 root (help status halt power-off load eval unload reload daemonize restart)
 ```
 
+
+## 參考 {#參考}
+
+-   [Booting process of Linux - Wikipedia](https://en.wikipedia.org/wiki/Booting_process_of_Linux)
+-   [Disk encryption theory - Wikipedia](https://en.wikipedia.org/wiki/Disk_encryption_theory)
+-   [Frequently Asked Questions Cryptsetup/LUKS - cryptsetup Wiki](https://gitlab.com/cryptsetup/cryptsetup/-/wikis/FrequentlyAskedQuestions)
+-   [GNU Guix Reference Manual](https://guix.gnu.org/manual/devel/en/guix.html)
+-   [You Don't Want XTS — Quarrelsome](https://sockpuppet.org/blog/2014/04/30/you-dont-want-xts/)
+-   [dm-crypt/Device encryption - ArchWiki](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption)
+-   [Using the initial RAM disk (initrd) - The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/admin-guide/initrd.html)
+
+> 題圖攝於 2024 初春。
+
 [^fn:1]: Btrfs，zstd 壓縮，壓縮等級爲預設（即 3），非強制壓縮。
-[^fn:2]: 引導加載器配置包含（依賴）Linux 內核、initrd 及啓動參數，啓動參數又依賴 init 程序。正好是操作系統存在的充分條件。
+[^fn:2]: 引導加載器配置包含（依賴）Linux 內核、initrd 及啓動參數，啓動參數又依賴用作 PID 1 的程序。正好是操作系統存在的充分條件。
