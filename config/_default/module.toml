@@ -1,2 +1,8 @@
 [[imports]]
 path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+[[mounts]]
+source = "content"
+target = "content"
+[[mounts]]
+source = "assets/img/content"
+target = "content"
