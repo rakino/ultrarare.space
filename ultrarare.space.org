@@ -13,6 +13,8 @@
 :ID:       4fd743cf-2dcc-4b4f-af9e-88fd1e145e69
 :END:
 :LOGBOOK:
+- State "DONE"       from "DOING"      [2024-02-27 Tue 16:17]
+- State "DOING"      from "DONE"       [2024-02-27 Tue 16:17]
 - State "DONE"       from "DOING"      [2024-02-24 Sat 14:04]
 - State "DOING"      from "DONE"       [2024-02-24 Sat 14:04]
 - State "DONE"       from "DOING"      [2024-02-24 Sat 11:38]
@@ -543,10 +545,15 @@ GRUB 會在開機時解鎖 LUKS 分區，但使用的鍵盤佈局卻可能是 QW
                     (supplementary-groups (list "audio" "video" "wheel"))))
              %base-user-accounts))
 
-    ;; font-google-noto 是一套支持所有語言的字體。
+    ;; font-google-noto 是一套支持所有語言的字體，由四個軟件包提供，其中 -emoji 爲
+    ;; 表情符號，-sans-cjk 和 -serif-cjk 則包含漢字。
     ;; nss-certs 是 CA 證書，上網需要。
     (packages
-     (append (list font-google-noto nss-certs)
+     (append (list font-google-noto
+                   font-google-noto-emoji
+                   font-google-noto-sans-cjk
+                   font-google-noto-serif-cjk
+                   nss-certs)
              %base-packages))
 
     (services

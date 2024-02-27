@@ -3,7 +3,7 @@ title = "時隔一年的桌面 Guix System 安裝"
 author = ["Hilton Chain"]
 description = "再有下次，怕是成本不低了。"
 date = 2024-02-24T01:14:00+08:00
-lastmod = 2024-02-24T14:04:00+08:00
+lastmod = 2024-02-27T16:17:00+08:00
 tags = ["Guix"]
 categories = ["notes"]
 draft = false
@@ -565,10 +565,15 @@ mount --options compress=zstd,discard=async,subvol=@Home \
                   (supplementary-groups (list "audio" "video" "wheel"))))
            %base-user-accounts))
 
-  ;; font-google-noto 是一套支持所有語言的字體。
+  ;; font-google-noto 是一套支持所有語言的字體，由四個軟件包提供，其中 -emoji 爲
+  ;; 表情符號，-sans-cjk 和 -serif-cjk 則包含漢字。
   ;; nss-certs 是 CA 證書，上網需要。
   (packages
-   (append (list font-google-noto nss-certs)
+   (append (list font-google-noto
+                 font-google-noto-emoji
+                 font-google-noto-sans-cjk
+                 font-google-noto-serif-cjk
+                 nss-certs)
            %base-packages))
 
   (services
