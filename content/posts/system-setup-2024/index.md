@@ -3,7 +3,7 @@ title = "時隔一年的桌面 Guix System 安裝"
 author = ["Hilton Chain"]
 description = "再有下次，怕是成本不低了。"
 date = 2024-02-24T01:14:00+08:00
-lastmod = 2024-02-27T16:17:00+08:00
+lastmod = 2024-09-30T18:44:00+08:00
 tags = ["Guix"]
 categories = ["notes"]
 draft = false
@@ -146,7 +146,7 @@ Guix 的頻道只負責分發定義，而不包含產物，但因爲產物的輸
 
 如果替代服務器上存在這個產物，Guix 就可以直接下載，反之則在本地構建。
 
-Guix 默認替代服務器爲 <https://ci.guix.gnu.org> 和 <https://bordeaux.guix.gnu.org>，二者獨立運行。SJTUG 有提供前者鏡像。
+Guix 默認替代服務器爲 <https://bordeaux.guix.gnu.org> 和 <https://ci.guix.gnu.org>，二者獨立運行。SJTUG 有提供後者鏡像。
 
 Nonguix 也有替代服務器，不過 Guix 在傳輸產物時必須簽名與驗證，所以首先需要授權 Nonguix 的公鑰：
 
@@ -179,8 +179,8 @@ index b0f9237..a60232e 100644
 -    --build-users-group=guixbuild --discover=yes
 +    --build-users-group=guixbuild --discover=yes \
 +    --substitute-urls='https://mirror.sjtu.edu.cn/guix \
-+                       https://ci.guix.gnu.org \
 +                       https://bordeaux.guix.gnu.org \
++                       https://ci.guix.gnu.org \
 +                       https://substitutes.nonguix.org'
  Environment='GUIX_LOCPATH=/var/guix/profiles/per-user/root/guix-profile/lib/locale' LC_ALL=en_US.utf8
  StandardOutput=syslog
@@ -194,9 +194,9 @@ diff --git a/guix.daemon.service b/guix.daemon.service
 index a60232e..c3a593c 100644
 --- a/guix.daemon.service
 +++ b/guix.daemon.service
-@@ -12,7 +12,8 @@ ExecStart=/var/guix/profiles/per-user/root/current-guix/bin/guix-daemon \
-                        https://ci.guix.gnu.org \
+@@ -12,6 +12,7 @@ ExecStart=/var/guix/profiles/per-user/root/current-guix/bin/guix-daemon \
                         https://bordeaux.guix.gnu.org \
+                        https://ci.guix.gnu.org \
                         https://substitutes.nonguix.org'
 -Environment='GUIX_LOCPATH=/var/guix/profiles/per-user/root/guix-profile/lib/locale' LC_ALL=en_US.utf8
 +Environment='GUIX_LOCPATH=/var/guix/profiles/per-user/root/guix-profile/lib/locale' LC_ALL=en_US.utf8 \
@@ -211,7 +211,7 @@ index a60232e..c3a593c 100644
 systemctl restart guix-daemon.service
 ```
 
-作爲對比，在 Guix System 中設置二進制替代大致如下：
+作爲對比，要在 Guix System 中完成這些設置大致如下：
 
 ```scheme
 (service guix-service-type
@@ -221,6 +221,32 @@ systemctl restart guix-daemon.service
                           "nonguix-signing-key.pub" ;Nonguix 公鑰文件內容。
                           "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
                    %default-authorized-guix-keys))
+          (channels
+           (list (channel
+                  (name 'guix)
+                  (url "https://mirror.sjtu.edu.cn/git/guix.git")
+                  (introduction
+                   (make-channel-introduction
+                    "9edb3f66fd807b096b48283debdcddccfea34bad"
+                    (openpgp-fingerprint
+                     "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
+                 (channel
+                  (name 'nonguix)
+                  (url "https://gitlab.com/nonguix/nonguix")
+                  (introduction
+                   (make-channel-introduction
+                    "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+                    (openpgp-fingerprint
+                     "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+                 (channel
+                  (name 'rosenthal)
+                  (url "https://codeberg.org/hako/rosenthal.git")
+                  (branch "trunk")
+                  (introduction
+                   (make-channel-introduction
+                    "7677db76330121a901604dfbad19077893865f35"
+                    (openpgp-fingerprint
+                     "13E7 6CD6 E649 C28C 3385  4DF5 5E5A A665 6149 17F7"))))))
           ;; 代理設置
           (http-proxy "http://127.0.0.1:1080")
           (substitute-urls
@@ -345,7 +371,7 @@ mkfs.btrfs /dev/mapper/encrypted
 ```shell
 mkdir --parents /media/encrypted
 
-mount --options compress=zstd,discard=async \
+mount --options compress=zstd \
       /dev/mapper/encrypted /media/encrypted
 
 btrfs subvolume create /media/encrypted/@Data
@@ -371,16 +397,16 @@ btrfs subvolume create /media/encrypted/@System/@Guix
 我的安裝過程將在 /mnt 下進行，這裏掛載文件系統到對應位置：
 
 ```shell
-mount --options compress=zstd,discard=async,subvol=@System/@Guix \
+mount --options compress=zstd,subvol=@System/@Guix \
       /dev/mapper/encrypted /mnt
 
 mkdir --parents /mnt{/efi,/var/lib,/home}
 
 mount /dev/nvme0n1p1 /mnt/efi
 
-mount --options compress=zstd,discard=async,subvol=@Data \
+mount --options compress=zstd,subvol=@Data \
       /dev/mapper/encrypted /mnt/var/lib
-mount --options compress=zstd,discard=async,subvol=@Home \
+mount --options compress=zstd,subvol=@Home \
       /dev/mapper/encrypted /mnt/home
 ```
 
@@ -402,7 +428,7 @@ mount --options compress=zstd,discard=async,subvol=@Home \
          (type "btrfs")
          (mount-point "/")
          (device "/dev/mapper/encrypted")
-         (options "compress=zstd,discard=async,subvol=@System/@Guix")
+         (options "compress=zstd,subvol=@System/@Guix")
          (create-mount-point? #t)
          (dependencies mapped-devices))
 
@@ -416,7 +442,7 @@ mount --options compress=zstd,discard=async,subvol=@Home \
          (type "btrfs")
          (mount-point "/var/lib")
          (device "/dev/mapper/encrypted")
-         (options "compress=zstd,discard=async,subvol=@Data")
+         (options "compress=zstd,subvol=@Data")
          (check? #f)
          (create-mount-point? #t)
          (dependencies mapped-devices))
@@ -425,7 +451,7 @@ mount --options compress=zstd,discard=async,subvol=@Home \
          (type "btrfs")
          (mount-point "/home")
          (device "/dev/mapper/encrypted")
-         (options "compress=zstd,discard=async,subvol=@Home")
+         (options "compress=zstd,subvol=@Home")
          (check? #f)
          (create-mount-point? #t)
          (dependencies mapped-devices))))
@@ -442,7 +468,7 @@ mount --options compress=zstd,discard=async,subvol=@Home \
                            (create-mount-point? #t)
                            (dependencies mapped-devices)))
        (options-for-subvolume
-        (cut string-append "compress=zstd,discard=async,subvol=" <>)))
+        (cut string-append "compress=zstd,subvol=" <>)))
    (append
     (list (file-system
             (type "fat")
@@ -477,7 +503,7 @@ mount --options compress=zstd,discard=async,subvol=@Home \
 ;; /etc/config.scm 由此開始：
 ;; Guix 頻道中的功能，是以模塊的形式提供的。
 (use-modules (gnu)
-             (gnu packages certs)
+             (guix channels)
              (gnu packages fonts)
              (gnu services xorg)
              (gnu services desktop)
@@ -534,21 +560,21 @@ mount --options compress=zstd,discard=async,subvol=@Home \
                    (type "btrfs")
                    (mount-point "/")
                    (device "/dev/mapper/encrypted")
-                   (options "compress=zstd,discard=async,subvol=@System/@Guix")
+                   (options "compress=zstd,subvol=@System/@Guix")
                    ;; 這裏的 mapped-devices 是 file-systems 配置之前出現的同名配置。
                    (dependencies mapped-devices))
                  (file-system
                    (type "btrfs")
                    (mount-point "/var/lib")
                    (device "/dev/mapper/encrypted")
-                   (options "compress=zstd,discard=async,subvol=@Data")
+                   (options "compress=zstd,subvol=@Data")
                    (check? #f)
                    (dependencies mapped-devices))
                  (file-system
                    (type "btrfs")
                    (mount-point "/home")
                    (device "/dev/mapper/encrypted")
-                   (options "compress=zstd,discard=async,subvol=@Home")
+                   (options "compress=zstd,subvol=@Home")
                    (check? #f)
                    (dependencies mapped-devices)))
            ;; %base-file-systems 包含一些用戶通常不會主動配置的文件系統，需要注
@@ -567,13 +593,11 @@ mount --options compress=zstd,discard=async,subvol=@Home \
 
   ;; font-google-noto 是一套支持所有語言的字體，由四個軟件包提供，其中 -emoji 爲
   ;; 表情符號，-sans-cjk 和 -serif-cjk 則包含漢字。
-  ;; nss-certs 是 CA 證書，上網需要。
   (packages
    (append (list font-google-noto
                  font-google-noto-emoji
                  font-google-noto-sans-cjk
-                 font-google-noto-serif-cjk
-                 nss-certs)
+                 font-google-noto-serif-cjk)
            %base-packages))
 
   (services
@@ -606,6 +630,32 @@ mount --options compress=zstd,discard=async,subvol=@Home \
                                   "nonguix-signing-key.pub" ;Nonguix 公鑰文件內容。
                                   "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
                            %default-authorized-guix-keys))
+                  (channels
+                   (list (channel
+                          (name 'guix)
+                          (url "https://mirror.sjtu.edu.cn/git/guix.git")
+                          (introduction
+                           (make-channel-introduction
+                            "9edb3f66fd807b096b48283debdcddccfea34bad"
+                            (openpgp-fingerprint
+                             "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
+                         (channel
+                          (name 'nonguix)
+                          (url "https://gitlab.com/nonguix/nonguix")
+                          (introduction
+                           (make-channel-introduction
+                            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+                            (openpgp-fingerprint
+                             "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+                         (channel
+                          (name 'rosenthal)
+                          (url "https://codeberg.org/hako/rosenthal.git")
+                          (branch "trunk")
+                          (introduction
+                           (make-channel-introduction
+                            "7677db76330121a901604dfbad19077893865f35"
+                            (openpgp-fingerprint
+                             "13E7 6CD6 E649 C28C 3385  4DF5 5E5A A665 6149 17F7"))))))
                   ;; ;; 代理設置
                   ;; (http-proxy "http://127.0.0.1:1080")
                   (substitute-urls
@@ -630,15 +680,12 @@ Guix System LiveCD 的解決方案是 [cow-store](https://guix.gnu.org/manual/de
 
 安裝過程可能因爲網絡問題失敗，不過已經下載好的內容之後不會重複下載，所以失敗了也請放心，重試就好。
 
-爲了方便在新系統中使用，可以把 [Guix System](#配置文件) 和[頻道](#頻道)的配置文件一併放進安裝路徑：
+爲了方便在新系統中使用，可以把 [Guix System](#配置文件) 的配置文件放進安裝路徑：
 
 ```shell
-mkdir --parents /mnt/etc/guix
 # /etc/guix 會存儲私鑰，所以有權限要求
-chmod 0511 /mnt/etc/guix
-
+mkdir --mode=0511 --parents /mnt/etc/guix
 cp {,/mnt}/etc/config.scm
-cp {,/mnt}/etc/guix/channels.scm
 ```
 
 至此安裝流程結束，可以重啓了。
