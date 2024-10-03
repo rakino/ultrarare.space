@@ -4,6 +4,5 @@ enableEmoji = true
 enableRobotsTXT = true
 hasCJKLanguage = true
 languageCode = "zh-Hant"
-paginate = 5
 timeout = "100s"
 title = "Ultra Rare Space"
