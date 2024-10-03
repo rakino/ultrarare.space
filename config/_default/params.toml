@@ -3,6 +3,10 @@ mainSections = ["posts"]
 # Output page's full content in RSS.
 rssFullContent = true
 
+[author]
+email = 'hako@ultrarare.space'
+name = 'Hilton Chain'
+
 [footer]
 since = 2019
 customText = "正是那不可預見的益使我珍視。"
