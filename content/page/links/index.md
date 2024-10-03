@@ -4,6 +4,7 @@ slug = "links"
 author = ["Hilton Chain"]
 description = "具象一些，不如說是被網線捆住了。"
 draft = false
+hidden = true
 [menu.main]
 name = "Links"
 weight = -40

@@ -4,6 +4,7 @@ slug = "now"
 author = ["Hilton Chain"]
 description = "近來怎樣？"
 draft = false
+hidden = true
 [menu.main]
 name = "Now"
 weight = -60
