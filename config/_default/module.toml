@@ -6,3 +6,6 @@ target = "content"
 [[mounts]]
 source = "assets/img/content"
 target = "content"
+[[mounts]]
+source = "assets/ext"
+target = "static/ext"
