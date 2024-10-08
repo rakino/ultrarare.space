@@ -1,0 +1,30 @@
+Vibrant:
+    - src: /ext/node-vibrant@3.1.6/vibrant.js
+      type: script
+
+PhotoSwipe:
+    - src: /ext/photoswipe@4.1.3/photoswipe.js
+      type: script
+      defer: true
+
+    - src: /ext/photoswipe@4.1.3/photoswipe-ui-default.js
+      type: script
+      defer: true
+
+    - src: /ext/photoswipe@4.1.3/default-skin/default-skin.css
+      type: style
+
+    - src: /ext/photoswipe@4.1.3/photoswipe.css
+      type: style
+
+KaTeX:
+    - src: /ext/katex@0.16.11/katex.css
+      type: style
+
+    - src: /ext/katex@0.16.11/katex.js
+      type: script
+      defer: true
+
+    - src: /ext/katex@0.16.11/contrib/auto-render.js
+      type: script
+      defer: true
