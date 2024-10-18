@@ -1,3 +1,6 @@
 [submodule "assets"]
 	path = assets
 	url = git@github.com:rakino/ultrarare.space-assets.git
+[submodule "resources"]
+	path = resources
+	url = git@github.com:rakino/ultrarare.space-resources.git
